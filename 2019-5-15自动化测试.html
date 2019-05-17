@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口测试结果</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">接口测试结果</h1>
+<p class='attribute'><strong>测试人员 : </strong> 夏志峰</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-05-15 10:28:27</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.444020</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 7，通过 5，失败 2，通过率= 71.43%</p>
+
+<p class='description'>结果</p>
+</div>
+
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 71.43% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 2 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 5 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 7 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test.TestClass1</td>
+    <td class="text-center">2</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_B</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in">
+    <pre>
+    
+pt1_1: ... setup ...
+B
+... teardown ...
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_a</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse in">
+    <pre>
+    
+pt1_2: ... setup ...
+a
+... teardown ...
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test.Test_BB</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',1)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='pt2_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_BB</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse in">
+    <pre>
+    
+pt2_1: BB
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_user_getinfo.TestUsergetinfo</td>
+    <td class="text-center">2</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c3',2)" class="detail" id='c3'>详细</a></td>
+</tr>
+
+<tr id='pt3_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_getinfo_r</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt3_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt3_1'>通过</button>
+    <div id='div_pt3_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt3_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt3_1'>通过</button>
+    <div id='div_pt3_1' class="collapse in">
+    <pre>
+    
+pt3_1: {"code":"1","message":"","data":[{"id":null,"roleId":null,"userName":null,"grade":"X1","subject":"YW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"一年级","subjectName":"语文","type":1},{"id":null,"roleId":null,"userName":null,"grade":"X4","subject":"YW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"四年级","subjectName":"语文","type":1},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"YW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"语文","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"YW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"语文","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"YW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"语文","type":3},{"id":null,"roleId":null,"userName":null,"grade":"X1","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"一年级","subjectName":"数学","type":1},{"id":null,"roleId":null,"userName":null,"grade":"X4","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"四年级","subjectName":"数学","type":1},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"数学","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"数学","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G2","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高二","subjectName":"数学","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"SX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"数学","type":3},{"id":null,"roleId":null,"userName":null,"grade":"X4","subject":"YY","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"四年级","subjectName":"英语","type":1},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"YY","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"英语","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"YY","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"英语","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"YY","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"英语","type":3},{"id":null,"roleId":null,"userName":null,"grade":"X4","subject":"WL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"四年级","subjectName":"物理","type":1},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"WL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"物理","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"WL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"物理","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G2","subject":"WL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高二","subjectName":"物理","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"WL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"物理","type":3},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"HX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"化学","type":2},{"id":null,"roleId":null,"userName":null,"grade":"C2","subject":"HX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初二","subjectName":"化学","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"HX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"化学","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"HX","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"化学","type":3},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"DL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"地理","type":2},{"id":null,"roleId":null,"userName":null,"grade":"C2","subject":"DL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初二","subjectName":"地理","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"DL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"地理","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"DL","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"地理","type":3},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"ZZ","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"政治","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"ZZ","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"政治","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"ZZ","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"政治","type":3},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"LS","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"历史","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"LS","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"历史","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"LS","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"历史","type":3},{"id":null,"roleId":null,"userName":null,"grade":"C1","subject":"SW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"初一","subjectName":"生物","type":2},{"id":null,"roleId":null,"userName":null,"grade":"G1","subject":"SW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高一","subjectName":"生物","type":3},{"id":null,"roleId":null,"userName":null,"grade":"G3","subject":"SW","createTime":null,"createUser":null,"updateTime":null,"updateUser":null,"status":null,"gradeName":"高三","subjectName":"生物","type":3}]}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft3_2' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_getinfo_w</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft3_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft3_2'>失败</button>
+    <div id='div_ft3_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft3_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft3_2'>失败</button>
+    <div id='div_ft3_2' class="collapse in">
+    <pre>
+    
+ft3_2: Traceback (most recent call last):
+  File "D:\pycharm\test_user_getinfo.py", line 34, in test_login_getinfo_w
+    self.assertIn('1', res.text)
+AssertionError: '1' not found in '{"message":"token校验失败","status":"0"}'
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_user_login.TessUserlogin</td>
+    <td class="text-center">2</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c4',2)" class="detail" id='c4'>详细</a></td>
+</tr>
+
+<tr id='ft4_1' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_f</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft4_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft4_1'>失败</button>
+    <div id='div_ft4_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft4_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft4_1'>失败</button>
+    <div id='div_ft4_1' class="collapse in">
+    <pre>
+    
+ft4_1: Traceback (most recent call last):
+  File "D:\pycharm\test_user_login.py", line 25, in test_user_login_f
+    self.assertIn('1',res.text)
+AssertionError: '1' not found in '{"code":"0","message":"用户名或者密码不正确","data":null}'
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_user_login_t</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_2'>通过</button>
+    <div id='div_pt4_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_2'>通过</button>
+    <div id='div_pt4_2' class="collapse in">
+    <pre>
+    
+pt4_2: {"code":"1","message":"","data":{"token":"Bearer-eyJhbGciOiJIUzUxMiJ9.eyJjb21wYW55IjoiMTI4Iiwicm9sZVN0ciI6IjE5OTA1YTZiMzBmOTNmYzg5ODg0MmZjOTlmNmNmZjgxIiwiZXhwIjoxNTYxNDg3MzA3LCJ1c2VybmFtZSI6Im1heWFuanUifQ.t4pCXNRZ4PAgrQcWLNSUBITHIGX_EAcxhJNQnDQysMNOot-doAXgQzepOB4wP64s7udTvnplZXBBsPTFpDzMTw","resources":[{"id":34,"parent":0,"parentName":null,"resourceCode":"11","resourceName":"试题管理","label":"试题管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":4,"remark":"试题管理","createUser":"LIUJINGJUAN3","createTime":"2018-12-04 14:26:52","changeUser":"liujingjuan3","changeTime":"2019-01-14 15:17:20","status":1,"is_has":null,"children":[{"id":35,"parent":34,"parentName":"试题管理","resourceCode":"11-1","resourceName":"选择题","label":"选择题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"testQuestions","resourceSort":3,"remark":"试题管理","createUser":"CAOZHONGYI","createTime":"2018-12-04 14:39:11","changeUser":"caozhongyi","changeTime":"2018-12-21 16:48:41","status":1,"is_has":null,"children":null,"roleId":null},{"id":40,"parent":34,"parentName":"试题管理","resourceCode":"11-5","resourceName":"阅读理解题","label":"阅读理解题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"readingList","resourceSort":3,"remark":"阅读题","createUser":"LIUJINGJUAN3","createTime":"2019-01-02 11:53:21","changeUser":"liujingjuan3","changeTime":"2019-01-07 17:54:45","status":1,"is_has":null,"children":null,"roleId":null},{"id":42,"parent":34,"parentName":"试题管理","resourceCode":"11-8","resourceName":"七选五","label":"七选五","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"fiveList","resourceSort":3,"remark":"七选五","createUser":"xiazhenyou","createTime":"2019-01-04 09:32:16","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":46,"parent":34,"parentName":"试题管理","resourceCode":"11-12","resourceName":"完型填空题","label":"完型填空题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"wxtkList","resourceSort":3,"remark":"完型填空","createUser":"caozhongyi","createTime":"2019-01-09 10:46:17","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":47,"parent":34,"parentName":"试题管理","resourceCode":"11-13","resourceName":"问答题","label":"问答题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"QAList","resourceSort":3,"remark":"问答","createUser":"CAOZHONGYI","createTime":"2019-01-09 14:58:41","changeUser":"caozhongyi","changeTime":"2019-01-09 14:58:55","status":1,"is_has":null,"children":null,"roleId":null},{"id":48,"parent":34,"parentName":"试题管理","resourceCode":"11-14","resourceName":"作文题","label":"作文题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"compositionList","resourceSort":3,"remark":"作文","createUser":"CAOZHONGYI","createTime":"2019-01-09 14:59:44","changeUser":"caozhongyi","changeTime":"2019-01-09 14:59:59","status":1,"is_has":null,"children":null,"roleId":null},{"id":49,"parent":34,"parentName":"试题管理","resourceCode":"11-15","resourceName":"翻译题","label":"翻译题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"translationList","resourceSort":3,"remark":"翻译","createUser":"CAOZHONGYI","createTime":"2019-01-09 15:00:41","changeUser":"caozhongyi","changeTime":"2019-01-09 15:00:58","status":1,"is_has":null,"children":null,"roleId":null},{"id":50,"parent":34,"parentName":"试题管理","resourceCode":"11-16","resourceName":"听力题","label":"听力题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"listenList","resourceSort":3,"remark":"听力","createUser":"CAOZHONGYI","createTime":"2019-01-11 10:06:39","changeUser":"caozhongyi","changeTime":"2019-01-11 10:06:56","status":1,"is_has":null,"children":null,"roleId":null},{"id":41,"parent":34,"parentName":"试题管理","resourceCode":"11-6","resourceName":"排序题","label":"排序题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"sortList","resourceSort":4,"remark":"排序题","createUser":"xiazhenyou","createTime":"2019-01-02 17:44:59","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":37,"parent":34,"parentName":"试题管理","resourceCode":"11-3","resourceName":"判断题","label":"判断题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"judgeList","resourceSort":5,"remark":"判断题","createUser":"xiazhenyou","createTime":"2018-12-19 09:33:30","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":38,"parent":34,"parentName":"试题管理","resourceCode":"11-4","resourceName":"填空题","label":"填空题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"completionList","resourceSort":6,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2018-12-24 10:17:26","changeUser":"liujingjuan3","changeTime":"2018-12-24 10:17:50","status":1,"is_has":null,"children":null,"roleId":null},{"id":43,"parent":34,"parentName":"试题管理","resourceCode":"11-7","resourceName":"连线题","label":"连线题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"lineList","resourceSort":7,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-07 10:44:51","changeUser":"liujingjuan3","changeTime":"2019-01-07 10:46:14","status":1,"is_has":null,"children":null,"roleId":null},{"id":44,"parent":34,"parentName":"试题管理","resourceCode":"11-9","resourceName":"组合题","label":"组合题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"combinationList","resourceSort":8,"remark":"","createUser":"liujingjuan3","createTime":"2019-01-08 10:53:24","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":45,"parent":34,"parentName":"试题管理","resourceCode":"11-10","resourceName":"改错题","label":"改错题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"correctList","resourceSort":9,"remark":"","createUser":"liujingjuan3","createTime":"2019-01-08 10:53:59","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":51,"parent":0,"parentName":null,"resourceCode":"12","resourceName":"试卷管理","label":"试卷管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":4,"remark":"试卷管理","createUser":"LIUJINGJUAN3","createTime":"2019-01-14 09:25:52","changeUser":"liujingjuan3","changeTime":"2019-01-14 15:17:02","status":1,"is_has":null,"children":[{"id":52,"parent":51,"parentName":"试卷管理","resourceCode":"12-1","resourceName":"入学诊断测试","label":"入学诊断测试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"entraList","resourceSort":1,"remark":"入学诊断测试","createUser":"xiazhenyou","createTime":"2019-01-14 09:27:16","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":57,"parent":51,"parentName":"试卷管理","resourceCode":"12-2","resourceName":"新东方活动","label":"新东方活动","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"xdfList","resourceSort":2,"remark":"新东方活动","createUser":"xiazhenyou","createTime":"2019-01-21 16:25:40","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":58,"parent":51,"parentName":"试卷管理","resourceCode":"12-3","resourceName":"自主招生考试","label":"自主招生考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"autoList","resourceSort":3,"remark":"自主招生考试","createUser":"xiazhenyou","createTime":"2019-01-21 16:55:24","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":59,"parent":51,"parentName":"试卷管理","resourceCode":"12-4","resourceName":"公校考试","label":"公校考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"pubSchoolList","resourceSort":4,"remark":"公校考试","createUser":"xiazhenyou","createTime":"2019-01-21 17:29:22","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":60,"parent":51,"parentName":"试卷管理","resourceCode":"12-5","resourceName":"模拟考试","label":"模拟考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"mockList","resourceSort":5,"remark":"模拟考试","createUser":"xiazhenyou","createTime":"2019-01-21 17:42:29","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":61,"parent":51,"parentName":"试卷管理","resourceCode":"12-6","resourceName":"真题考试","label":"真题考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"examList","resourceSort":6,"remark":"真题考试","createUser":"XIAZHENYOU","createTime":"2019-01-21 17:43:19","changeUser":"xiazhenyou","changeTime":"2019-02-11 09:44:27","status":1,"is_has":null,"children":null,"roleId":null},{"id":80,"parent":51,"parentName":"试卷管理","resourceCode":"12-7","resourceName":"班级作业","label":"班级作业","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"workList","resourceSort":7,"remark":"班级作业","createUser":"xiazhenyou","createTime":"2019-02-13 10:17:42","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":81,"parent":51,"parentName":"试卷管理","resourceCode":"12-8","resourceName":"考试大纲","label":"考试大纲","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"syllaList","resourceSort":8,"remark":"考试大纲","createUser":"xiazhenyou","createTime":"2019-02-13 10:19:21","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":82,"parent":51,"parentName":"试卷管理","resourceCode":"12-9","resourceName":"其他","label":"其他","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"otherList","resourceSort":9,"remark":"其他","createUser":"xiazhenyou","createTime":"2019-02-13 10:20:14","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":53,"parent":0,"parentName":null,"resourceCode":"13","resourceName":"活动管理","label":"活动管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":5,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-14 11:23:47","changeUser":"liujingjuan3","changeTime":"2019-01-14 15:16:23","status":1,"is_has":null,"children":[{"id":54,"parent":53,"parentName":"活动管理","resourceCode":"13-1","resourceName":"入学诊断测试","label":"入学诊断测试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityEntraList","resourceSort":1,"remark":"","createUser":"liujingjuan3","createTime":"2019-01-14 11:26:24","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":55,"parent":53,"parentName":"活动管理","resourceCode":"13-2","resourceName":"真题测评","label":"真题测评","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityZhentiList","resourceSort":2,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-15 09:40:30","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:40:27","status":1,"is_has":null,"children":null,"roleId":null},{"id":62,"parent":53,"parentName":"活动管理","resourceCode":"13-3","resourceName":"模拟考试","label":"模拟考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityAdcTestList","resourceSort":3,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:38:16","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:45:54","status":1,"is_has":null,"children":null,"roleId":null},{"id":63,"parent":53,"parentName":"活动管理","resourceCode":"13-4","resourceName":"班级作业","label":"班级作业","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityClassWorkList","resourceSort":4,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:38:48","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:45:57","status":1,"is_has":null,"children":null,"roleId":null},{"id":65,"parent":53,"parentName":"活动管理","resourceCode":"13-8","resourceName":"公校考试","label":"公校考试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityPubliSchoolTestList","resourceSort":5,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:39:58","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:46:00","status":1,"is_has":null,"children":null,"roleId":null},{"id":67,"parent":53,"parentName":"活动管理","resourceCode":"13-5","resourceName":"考试大纲","label":"考试大纲","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityExamOutlineList","resourceSort":5,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:42:34","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:46:04","status":1,"is_has":null,"children":null,"roleId":null},{"id":68,"parent":53,"parentName":"活动管理","resourceCode":"13-7","resourceName":"自主招生测试","label":"自主招生测试","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityOwnEnrollList","resourceSort":7,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:43:25","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:46:09","status":1,"is_has":null,"children":null,"roleId":null},{"id":66,"parent":53,"parentName":"活动管理","resourceCode":"13-9","resourceName":"新东方活动","label":"新东方活动","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityXdfActivityList","resourceSort":9,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:41:02","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:46:11","status":1,"is_has":null,"children":null,"roleId":null},{"id":64,"parent":53,"parentName":"活动管理","resourceCode":"13-6","resourceName":"其他","label":"其他","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"activityOtherList","resourceSort":10,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-23 17:39:17","changeUser":"liujingjuan3","changeTime":"2019-01-23 17:55:12","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":69,"parent":0,"parentName":null,"resourceCode":"14","resourceName":"专题管理","label":"专题管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":6,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 09:35:34","changeUser":"liujingjuan3","changeTime":"2019-01-24 09:35:50","status":1,"is_has":null,"children":[{"id":70,"parent":69,"parentName":"专题管理","resourceCode":"14-1","resourceName":"考试专题","label":"考试专题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"topicList","resourceSort":1,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 09:36:47","changeUser":"liujingjuan3","changeTime":"2019-03-27 15:52:52","status":1,"is_has":null,"children":null,"roleId":null},{"id":89,"parent":69,"parentName":"专题管理","resourceCode":"14-2","resourceName":"练习专题","label":"练习专题","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"topicPracticeList","resourceSort":2,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-03-27 10:16:07","changeUser":"liujingjuan3","changeTime":"2019-03-27 15:52:58","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":87,"parent":0,"parentName":null,"resourceCode":"21","resourceName":"学员管理","label":"学员管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":6,"remark":"学员管理","createUser":"XIAZHENYOU","createTime":"2019-03-21 10:22:28","changeUser":"xiazhenyou","changeTime":"2019-03-22 16:43:07","status":1,"is_has":null,"children":[{"id":88,"parent":87,"parentName":"学员管理","resourceCode":"21-1","resourceName":"学员信息管理","label":"学员信息管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"studentList","resourceSort":1,"remark":"学员信息管理","createUser":"xiazhenyou","createTime":"2019-03-21 10:23:23","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":71,"parent":0,"parentName":null,"resourceCode":"15","resourceName":"报班管理","label":"报班管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":7,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 16:45:22","changeUser":"liujingjuan3","changeTime":"2019-01-24 16:46:04","status":1,"is_has":null,"children":[{"id":72,"parent":71,"parentName":"报班管理","resourceCode":"15-1","resourceName":"报班管理","label":"报班管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"attendClassList","resourceSort":1,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 16:46:35","changeUser":"liujingjuan3","changeTime":"2019-01-24 16:46:42","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":83,"parent":0,"parentName":null,"resourceCode":"19","resourceName":"纠错审核","label":"纠错审核","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":7,"remark":"纠错审核","createUser":"XIAZHENYOU","createTime":"2019-03-20 15:17:20","changeUser":"xiazhenyou","changeTime":"2019-03-22 16:43:22","status":1,"is_has":null,"children":[{"id":84,"parent":83,"parentName":"纠错审核","resourceCode":"19-1","resourceName":"纠错审核","label":"纠错审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"correctionList","resourceSort":1,"remark":"纠错审核","createUser":"XIAZHENYOU","createTime":"2019-03-20 15:18:04","changeUser":"xiazhenyou","changeTime":"2019-03-22 16:44:08","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":73,"parent":0,"parentName":null,"resourceCode":"16","resourceName":"试题审核管理","label":"试题审核管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":8,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 18:16:56","changeUser":"liujingjuan3","changeTime":"2019-01-31 10:11:00","status":1,"is_has":null,"children":[{"id":90,"parent":73,"parentName":"试题审核管理","resourceCode":"16-2","resourceName":"内容审核","label":"内容审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"reviewContentList","resourceSort":1,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-04-08 09:22:19","changeUser":"liujingjuan3","changeTime":"2019-04-08 09:22:36","status":1,"is_has":null,"children":null,"roleId":null},{"id":74,"parent":73,"parentName":"试题审核管理","resourceCode":"16-1","resourceName":"公开审核","label":"公开审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"questionReviewList","resourceSort":2,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-24 18:19:31","changeUser":"liujingjuan3","changeTime":"2019-04-08 09:22:25","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":85,"parent":0,"parentName":null,"resourceCode":"20","resourceName":"意见反馈审核","label":"意见反馈审核","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":8,"remark":"意见反馈审核","createUser":"XIAZHENYOU","createTime":"2019-03-20 16:40:50","changeUser":"xiazhenyou","changeTime":"2019-03-22 16:43:35","status":1,"is_has":null,"children":[{"id":86,"parent":85,"parentName":"意见反馈审核","resourceCode":"20-1","resourceName":"意见反馈审核","label":"意见反馈审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"faceList","resourceSort":1,"remark":"意见反馈审核","createUser":"xiazhenyou","createTime":"2019-03-20 16:41:51","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":78,"parent":0,"parentName":null,"resourceCode":"18","resourceName":"试卷审核管理","label":"试卷审核管理","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":9,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-31 09:58:54","changeUser":"liujingjuan3","changeTime":"2019-01-31 10:10:56","status":1,"is_has":null,"children":[{"id":91,"parent":78,"parentName":"试卷审核管理","resourceCode":"18-2","resourceName":"内容审核","label":"内容审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"paperContentReviewList","resourceSort":0,"remark":"","createUser":"liujingjuan3","createTime":"2019-04-09 13:58:35","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":79,"parent":78,"parentName":"试卷审核管理","resourceCode":"18-1","resourceName":"公开审核","label":"公开审核","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"paperPublicReviewList","resourceSort":1,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-31 10:00:13","changeUser":"liujingjuan3","changeTime":"2019-04-09 13:58:47","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":94,"parent":0,"parentName":null,"resourceCode":"22","resourceName":"阅卷中心","label":"阅卷中心","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":9,"remark":"阅卷中心","createUser":"XIAZHENYOU","createTime":"2019-04-17 09:51:07","changeUser":"xiazhenyou","changeTime":"2019-04-17 09:51:54","status":1,"is_has":null,"children":[{"id":97,"parent":94,"parentName":"阅卷中心","resourceCode":"22-1","resourceName":"我的阅卷","label":"我的阅卷","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"markList","resourceSort":1,"remark":"我的阅卷","createUser":"xiazhenyou","createTime":"2019-04-17 13:47:50","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":75,"parent":0,"parentName":null,"resourceCode":"17","resourceName":"我的收藏","label":"我的收藏","isLeaf":2,"resourceIcon":"icon-peiwangyindao","resourceUrl":null,"resourceSort":10,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-28 15:48:35","changeUser":"liujingjuan3","changeTime":"2019-01-31 09:59:20","status":1,"is_has":null,"children":[{"id":76,"parent":75,"parentName":"我的收藏","resourceCode":"17-1","resourceName":"试题收藏","label":"试题收藏","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"collectQusetionList","resourceSort":1,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-28 15:49:37","changeUser":"liujingjuan3","changeTime":"2019-01-28 15:50:18","status":1,"is_has":null,"children":null,"roleId":null},{"id":77,"parent":75,"parentName":"我的收藏","resourceCode":"17-2","resourceName":"试卷收藏","label":"试卷收藏","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"collectPaperList","resourceSort":2,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-01-28 15:50:05","changeUser":"liujingjuan3","changeTime":"2019-01-28 15:50:21","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":7,"parent":0,"parentName":null,"resourceCode":"8","resourceName":"系统管理","label":"系统管理","isLeaf":2,"resourceIcon":"icon-icon_shezhi","resourceUrl":null,"resourceSort":11,"remark":"系统管理","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":"liujingjuan3","changeTime":"2019-01-31 09:59:29","status":1,"is_has":null,"children":[{"id":8,"parent":7,"parentName":"系统管理","resourceCode":"8-1","resourceName":"组织管理","label":"组织管理","isLeaf":1,"resourceIcon":"icon-zuzhiqunzu","resourceUrl":"organization","resourceSort":9,"remark":"系统管理 组织管理","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":9,"parent":7,"parentName":"系统管理","resourceCode":"5","resourceName":"任务管理","label":"任务管理","isLeaf":1,"resourceIcon":"icon-renwujincheng","resourceUrl":"task","resourceSort":10,"remark":"系统管理-任务管理","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":11,"parent":7,"parentName":"系统管理","resourceCode":"8-3","resourceName":"用户操作记录","label":"用户操作记录","isLeaf":1,"resourceIcon":"icon-ceshishenqing","resourceUrl":"operation","resourceSort":11,"remark":"","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":12,"parent":7,"parentName":"系统管理","resourceCode":"8-4","resourceName":"资源管理","label":"资源管理","isLeaf":1,"resourceIcon":"icon-wenjianjia","resourceUrl":"resource","resourceSort":11,"remark":"","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":13,"parent":7,"parentName":"系统管理","resourceCode":"8-5","resourceName":"角色设置","label":"角色设置","isLeaf":1,"resourceIcon":"icon-zhanghaoquanxianguanli","resourceUrl":"role","resourceSort":13,"remark":"","createUser":"LIUJINGJUAN3","createTime":null,"changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":21,"parent":7,"parentName":"系统管理","resourceCode":"8-6","resourceName":"用户管理","label":"用户管理","isLeaf":1,"resourceIcon":"icon-icon_zhanghao","resourceUrl":"user","resourceSort":14,"remark":"","createUser":"liujingjuan3","createTime":"2018-11-29 11:32:09","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":93,"parent":7,"parentName":"系统管理","resourceCode":"8-7","resourceName":"资源对应关系","label":"资源对应关系","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"roleMenuSchool","resourceSort":14,"remark":"","createUser":"LIUJINGJUAN3","createTime":"2019-04-12 16:05:24","changeUser":"liujingjuan3","changeTime":"2019-04-12 16:39:29","status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null},{"id":17,"parent":0,"parentName":null,"resourceCode":"9","resourceName":"基础数据管理","label":"基础数据管理","isLeaf":2,"resourceIcon":"icon-shujuwajue","resourceUrl":null,"resourceSort":11,"remark":"基础数据目录","createUser":"LIUJINGJUAN3","createTime":"2018-11-27 09:46:57","changeUser":"liujingjuan3","changeTime":"2019-01-28 15:49:01","status":1,"is_has":null,"children":[{"id":28,"parent":17,"parentName":"基础数据管理","resourceCode":"9-4","resourceName":"省份管理","label":"省份管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"address","resourceSort":3,"remark":"省市区管理","createUser":"CAOZHONGYI","createTime":"2018-12-03 09:55:05","changeUser":"caozhongyi","changeTime":"2018-12-03 15:57:20","status":1,"is_has":null,"children":null,"roleId":null},{"id":29,"parent":17,"parentName":"基础数据管理","resourceCode":"9-5","resourceName":"年级管理","label":"年级管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"classList","resourceSort":3,"remark":"班级管理","createUser":"CAOZHONGYI","createTime":"2018-12-03 10:14:05","changeUser":"caozhongyi","changeTime":"2018-12-03 10:17:53","status":1,"is_has":null,"children":null,"roleId":null},{"id":32,"parent":17,"parentName":"基础数据管理","resourceCode":"9-8","resourceName":"城市管理","label":"城市管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"address1","resourceSort":3,"remark":"城市管理","createUser":"caozhongyi","createTime":"2018-12-03 16:14:53","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":33,"parent":17,"parentName":"基础数据管理","resourceCode":"9-7","resourceName":"行政区管理","label":"行政区管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"address2","resourceSort":3,"remark":"行政区管理","createUser":"caozhongyi","createTime":"2018-12-03 16:15:52","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":39,"parent":17,"parentName":"基础数据管理","resourceCode":"publicSchools","resourceName":"公立学校","label":"公立学校","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"publicSchools","resourceSort":3,"remark":"公立学校","createUser":"CAOZHONGYI","createTime":"2019-01-02 09:12:14","changeUser":"caozhongyi","changeTime":"2019-01-02 09:20:01","status":1,"is_has":null,"children":null,"roleId":null},{"id":30,"parent":17,"parentName":"基础数据管理","resourceCode":"9-6","resourceName":"科目管理","label":"科目管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"subject","resourceSort":4,"remark":"科目管理","createUser":"caozhongyi","createTime":"2018-12-03 10:14:58","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":92,"parent":17,"parentName":"基础数据管理","resourceCode":"9-10","resourceName":"学习建议配置","label":"学习建议配置","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"proposal","resourceSort":9,"remark":"学习建议配置","createUser":"xiazhenyou","createTime":"2019-04-11 09:15:36","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":18,"parent":17,"parentName":"基础数据管理","resourceCode":"9-1","resourceName":"字典管理","label":"字典管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"dictionary","resourceSort":21,"remark":"基础数据管理 -字典管理","createUser":"liujingjuan3","createTime":"2018-11-27 09:47:47","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":27,"parent":17,"parentName":"基础数据管理","resourceCode":"9-3","resourceName":"知识点管理","label":"知识点管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"knowledge","resourceSort":28,"remark":"","createUser":"liujingjuan3","createTime":"2018-11-30 11:40:03","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null},{"id":20,"parent":17,"parentName":"基础数据管理","resourceCode":"9-2","resourceName":"题型管理","label":"题型管理","isLeaf":1,"resourceIcon":"icon-shiyongwendang","resourceUrl":"questionTypes","resourceSort":34,"remark":"","createUser":"liujingjuan3","createTime":"2018-11-29 11:21:55","changeUser":null,"changeTime":null,"status":1,"is_has":null,"children":null,"roleId":null}],"roleId":null}],"username":"MAYANJU","name":"马艳菊","deptName":"合肥学校信息管理部","companyName":"合肥新东方培训学校","companyId":"128"}}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>7</td>
+    <td>5</td>
+    <td>2</td>
+    <td>0</td>
+    <td>通过率：71.43%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>
